@@ -2,7 +2,6 @@ var fs = require('fs');
 
 var express = require('express');
 var morgan = require('morgan');
-var serveStatic = require('serve-static');
 var getRawBody = require('raw-body');
 var favicon = require('serve-favicon');
 var tmplEngine = require('ejs-mate');
@@ -16,15 +15,18 @@ var app = express();
 app.engine('ejs', tmplEngine);
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(serveStatic(__dirname + '/public'));
-app.use(morgan('dev'));
+app.set('etag', false);
+
+app.use(express.static(__dirname + '/public', { maxAge: '5d' }));
+app.use('/drawing', express.static(config.imgStore, { maxAge: '5d' }));
+app.use(morgan('short'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 
 app.get('/drawings', function (req, res) {
   fs.readdir(config.imgStore, function(err, files) {
     var rnd = Math.floor(Math.random() * files.length);
-    console.log('[%s] Serving %s', new Date(), files[rnd]);
+    console.log('[%s] Showing %s', new Date(), files[rnd]);
     res.render('drawings', { drawing: files[rnd] });
   });
 });
