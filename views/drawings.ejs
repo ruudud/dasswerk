@@ -1,4 +1,5 @@
 <% layout('base') %>
+<% block('head').append('<meta http-equiv="refresh" content="5">') %>
 
 <% if (drawing) { %>
   <img src="/drawing/<%= drawing %>"/>
