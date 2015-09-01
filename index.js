@@ -8,7 +8,7 @@ var tmplEngine = require('ejs-mate');
 
 
 var config = {
-  imgStore: process.env.IMAGE_STORE || './public/drawings/'
+  imgStore: process.env.IMAGE_STORE || './drawings/'
 };
 
 var app = express();
@@ -22,16 +22,22 @@ app.use('/drawing', express.static(config.imgStore, { maxAge: '5d' }));
 app.use(morgan('short'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
+app.get('/', function(req, res) {
+  res.render('index');
+});
 
-app.get('/drawings', function (req, res) {
+app.get('/drawings', function(req, res) {
   fs.readdir(config.imgStore, function(err, files) {
+    files = files.filter(function(file) {
+      return file.match(/\.png$/);
+    });
     var rnd = Math.floor(Math.random() * files.length);
     console.log('[%s] Showing %s', new Date(), files[rnd]);
     res.render('drawings', { drawing: files[rnd] });
   });
 });
 
-app.post('/drawings', function (req, res, next) {
+app.post('/drawings', function(req, res, next) {
   getRawBody(req, {
     length: req.headers['content-length'],
     limit: '1mb',

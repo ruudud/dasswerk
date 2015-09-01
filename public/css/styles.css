@@ -2,38 +2,74 @@
 @import url(https://fonts.googleapis.com/css?family=Quantico);
 
 html, body {
-
-    background: #f2f2f2;
+    background: #F51E50;
     overflow: hidden;
     margin: 0;
 }
 
-/* Info */
-
-@-webkit-keyframes show-info {
-    0% { -webkit-transform: rotateY(120deg); }
-    100% { -webkit-transform: rotateY(0deg); }
+.menu {
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+}
+.menu .menu-btn {
+  flex: 1 0 48%;
+  font-weight: bold;
+  cursor: pointer;
+}
+.menu .menu-btn:first-child {
+  margin-right: 5px;
+}
+.menu .menu-btn:last-child {
+  margin-left: 5px;
 }
 
-@-moz-keyframes show-info {
-    0% { -moz-transform: rotateY(120deg); }
-    100% { -moz-transform: rotateY(0deg); }
+@-moz-keyframes slideInDown {
+  from {
+    -moz-transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-@-ms-keyframes show-info {
-    0% { -ms-transform: rotateY(120deg); }
-    100% { -ms-transform: rotateY(0deg); }
+@-ms-keyframes slideInDown {
+  from {
+    -ms-transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-@-o-keyframes show-info {
-    0% { -o-transform: rotateY(120deg); }
-    100% { -o-transform: rotateY(0deg); }
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-@keyframes show-info {
-    0% { transform: rotateY(120deg); }
-    100% { transform: rotateY(0deg); }
-}
+
 
 .info {
 
@@ -56,17 +92,12 @@ html, body {
     transform: perspective(800);
 
     font-family: 'Quantico', sans-serif;
-    position: absolute;
     font-size: 12px;
     opacity: 0.8;
     color: #fff;
-    width: 240px;
-    left: 0px;
-    top: 20px;
 }
 
 .info:hover {
-
     box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
     opacity: 1.0;
 }
@@ -80,7 +111,6 @@ html, body {
 }
 
 .info a {
-
     -webkit-transition: all 200ms ease-out;
     -moz-transition: all 200ms ease-out;
     -ms-transition: all 200ms ease-out;
@@ -94,12 +124,10 @@ html, body {
 }
 
 .info a:hover {
-
     opacity: 0.99;
 }
 
 .info .about, .info .more {
-
     -webkit-transform-origin: 0% 50%;
     -moz-transform-origin: 0% 50%;
     -ms-transform-origin: 0% 50%;
@@ -119,11 +147,11 @@ html, body {
 
 .info .about {
 
-    -webkit-animation: show-info 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
-    -moz-animation: show-info 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
-    -ms-animation: show-info 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
-    -o-animation: show-info 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
-    animation: show-info 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
+    -webkit-animation: slideInDown 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
+    -moz-animation: slideInDown 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
+    -ms-animation: slideInDown 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
+    -o-animation: slideInDown 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
+    animation: slideInDown 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000) 600ms 1 normal forwards;
 
     padding-bottom: 15px;
 }
