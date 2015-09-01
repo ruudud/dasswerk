@@ -32,7 +32,7 @@ app.get('/drawings', function(req, res) {
       return file.match(/\.png$/);
     });
     var rnd = Math.floor(Math.random() * files.length);
-    console.log('[%s] Showing %s', new Date(), files[rnd]);
+    //console.log('[%s] Showing %s', new Date(), files[rnd]);
     res.render('drawings', { drawing: files[rnd] });
   });
 });
@@ -50,7 +50,8 @@ app.post('/drawings', function(req, res, next) {
 
     fs.writeFile(path, base64Data, 'base64', function(fdErr) {
       if (fdErr) throw fdErr;
-      console.log('[%s] Saved %s', new Date(), path);
+      console.log('[%s] Saved %s, ua=%s',
+                  new Date(), path, req.headers['user-agent']);
     });
     return res.status(201).end();
   });
